@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Footer.css";
-import { useDispatch, useSelector } from "react-redux";
-import { asyncComercio } from "../redux/slice";
+import { useSelector } from "react-redux";
+
 
 export const Foot = () => {
  
@@ -10,7 +10,7 @@ export const Foot = () => {
   return (
     <footer className="footy animate__animated  animate__zoomIn">
       <div className="linkss">
-      <a className="links" href={`http://wa.me/+${comercio?.attributes?.whatsapp}`} target="_blank">
+      <a className="links" href={`http://wa.me/+542914049322`} target="_blank">
 
           <svg
             className="linkC"
@@ -28,7 +28,7 @@ export const Foot = () => {
           </svg>
         </a>
 
-        <a className="links" href={comercio?.attributes?.instagram} target="_blank">
+        <a className="links" href="https://www.instagram.com/madrehayunosolo/" target="_blank">
 
           <svg
             className="linkC"
