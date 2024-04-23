@@ -65,7 +65,7 @@ const FormularioVenta = () => {
             onChange={handleOrder}
             required
             className="Finput inputOrbitron "
-            inputmode="numeric"
+            inputMode="numeric"
             placeholder="...0"
             dir="rtl" // Añade esta línea para mover el número inicial a la derecha
           />

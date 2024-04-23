@@ -5,7 +5,7 @@ import "./Cards.css";
 import { CardEdite } from "./Card/CardEdit";
 
 export const CardsEdite = ({ products }) => {
-  // console.log(products[0]?.attributes, "que llega a la card");
+  console.log(products, "que llega a la card");
   return (
     <div className="cartaEdit" >
       <div className="rowsCardEdit">
@@ -17,4 +17,4 @@ export const CardsEdite = ({ products }) => {
   );
 };
 
-// {products?.map((e)=><Card  nombre={e.name} detalle={e.detail} precio={e.price}/> )}
+

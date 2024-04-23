@@ -4,9 +4,6 @@ import { CardsBag } from "./CardsBag/CardsB";
 import  Nav  from "../Nav/Nav";
 import "./myBag.css";
 import {
-  asyncAllProducts,
-  asyncCategorias,
-  asyncComercio,
   asyncOrder,
 } from "../redux/slice";
 import QRCode from "qrcode.react";

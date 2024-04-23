@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Comander.css";
-import { asyncComandas, asyncGetProv, asyncPedidoRealizado } from "../../redux/slice";
+import {  asyncComandas, asyncGetProv, asyncPedidoRealizado, asyncSubCategoria } from "../../redux/slice";
 import LogIn from "../../BtnNavidad/LogIn";
 import FormularioVenta from "../formVenta/formVenta";
 import { Editer } from "../../Categorias/Editer";
@@ -14,9 +14,10 @@ import EditProduct from "../formVenta/formEditProd.jsx";
 
 const ComandasComponent = () => {
   const dispatch = useDispatch();
-  const { comandas, comandasTrue, comandasFalse, usuarioComander } =
+  const { comandas, comandasTrue, comandasFalse, usuarioComander} =
     useSelector((state) => state.alldata);
   const [loadingComandas, setLoadingComandas] = useState([]);
+
   
   useEffect(() => {
     const obtenerComandas = async () => {
@@ -27,7 +28,6 @@ const ComandasComponent = () => {
         console.error("Error al obtener comandas:", error);
       }
     };
-  
     if (usuarioComander) {
       obtenerComandas();
     }

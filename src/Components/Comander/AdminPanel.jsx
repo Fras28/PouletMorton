@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Dashboard from "./DashBoard/DashBoard"
 import ComandasComponent from "./General/Comander";
 import ModalGen from "../Modal/ModalConfirmacion/Modal";
 import { Editer } from "../Categorias/Editer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginComponent from "./LogIn/LogIn";
+import { asyncSubCategoria} from "../redux/slice";
+
 
 
 export const AdminPanel = () => {
+  const dispatch = useDispatch();
   const [panel, setPanel] = useState("General");
   const { usuarioComander } = useSelector((state) => state.alldata);
-  
+
   return (
     <>
       {usuarioComander?

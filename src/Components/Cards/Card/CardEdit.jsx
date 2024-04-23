@@ -7,13 +7,14 @@ import ModalGen from "../../Modal/ModalConfirmacion/Modal";
 import EditProduct from "../../Comander/formVenta/formEditProd";
 
 export const CardEdite = ({ producto }) => {
-
   const dispatch = useDispatch();
   const [articles, setArticles] = useState({
     name: [],
     price: [],
   });
   const product = producto.attributes;
+
+console.log(product, "en CardEdite");
 
   const editLogo = (
     <svg
