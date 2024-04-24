@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardsEdite } from "../Cards/CardsEdit.jsx";
+import { asyncAllProducts, asyncArticulos, asyncSubCategoria } from "../redux/slice.jsx";
 
 export const Editer = () => {
   const dispatch = useDispatch();
-  const { allProduct } = useSelector((state) => state.alldata);
+  const { subCategorias,allProduct } = useSelector((state) => state.alldata);
+
+  useEffect(()=>{
+    dispatch(asyncAllProducts())
+  },[])
 
 
   // Estado para el valor de búsqueda
   const [searchValue, setSearchValue] = useState("");
 
-  // Función para manejar cambios en el input de búsqueda
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
-
-
-
   return (
     <div className="containerEdit">
       <div>

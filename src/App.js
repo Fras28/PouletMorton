@@ -10,7 +10,6 @@ import LandingPage from "./Components/Landing/LandingPage.jsx";
 
 import { BagXX } from "./Components/myBag/myBag.jsx";
 import {
-  asyncAllProducts,
   asyncCategorias,
   asyncComercio,
   asyncSubCategorias,

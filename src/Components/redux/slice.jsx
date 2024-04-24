@@ -150,12 +150,10 @@ export const dataSlice = createSlice({
 //-------------------------------------------------------------------------------------------------------------------
 //------------------------------------------ function Movies ------------------------------------------------------
 //----------------------------------------------------------------------------------------------------------------
-const API_STRAPI_ARTICTULOS = process.env.REACT_APP_API_STRAPI_ARTICTULOS;
+
 const API_CATEGORIAS = process.env.REACT_APP_API_STRAPI_CATEGORIAS;
-const API_COMERCIO = process.env.REACT_APP_API_STRAPI_COMERCIOS;
 const API_ORDER = process.env.REACT_APP_API_ORDER;
 const API_PROVE = process.env.REACT_APP_API_POVEEDOR;
-const jwtSecret = process.env.JWT_SECRET;
 const API_US = process.env.REACT_APP_API_USERS;
 const IDENTIFIERU = process.env.REACT_APP_IDENTIFIER;
 const PASSWORDU = process.env.REACT_APP_PASSWORD;
@@ -163,62 +161,52 @@ const API_SUBCAT= process.env.REACT_APP_API_STRAPI_SUBCATEGORIAS;
 const API_GENERAL = process.env.REACT_APP_API_STRAPI;
 const API_INICIO = process.env.REACT_APP_API_INICIO
 const API_2  = process.env.REACT_APP_API_CATEGORIA;
+const API_BASE = process.env.REACT_APP_API_COMERCIO
 
 
 
 const comercio = 2;
-export const asyncAllProducts = () => {
+
+
+
+
+export const asyncAllProducts= () => {
   return async function (dispatch) {
     try {
-      let currentPage = 1;
-      let allData = [];
+      console.log("ejecutando async PRODUCTS");
+      const response = await axios.get(`${API_BASE}${comercio}?populate=categorias.sub_categorias.articulos`);
 
-      // Realizar solicitudes de paginación hasta que se recopile toda la información
-      while (true) {
-        const pagination = {}; // Declarar el objeto pagination
-        pagination.page = currentPage; // Declarar la propiedad page en pagination
+      const articulosExtraidos = extraerArticulos(response.data.data);
 
-        const response = await axios.get(`${API_STRAPI_ARTICTULOS}`, {
-          params: { pagination },
-        });
-    
-
-        if (!response.data.data || response.data.data.length === 0) {
-          // Si no hay más datos, salir del bucle
-          break;
-        }
-
-        // Filtrar los datos para asegurarse de tener valores en sub_categoria.data y categorias.data
-        const filteredData = response.data.data.filter(
-          (item) =>
-            item.attributes?.sub_categoria?.data &&
-            item.attributes?.sub_categoria?.data?.id &&
-            item.attributes?.categorias?.data &&
-            item.attributes?.categorias?.data?.id &&
-            item.attributes?.comercio?.data &&
-            item.attributes?.comercio?.data?.id === comercio // Filtrar por el id del comercio igual a 1
-        );
-
-        // Agregar los datos filtrados de la página actual al conjunto total
-        allData = [...allData, ...filteredData];
-
-        // Ir a la siguiente página
-        currentPage++;
-
-        // Actualizar la condición del bucle while
-        if (response.data.data.length < 25) {
-          // Si hay menos de 25 elementos en la respuesta, asumimos que es la última página
-          break;
-        }
-      }
-
-      // Despachar la acción con la información completa
-      return dispatch(allProducts(allData));
+      return dispatch(allProducts(articulosExtraidos));
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error al obtener los artículos:", error);
     }
   };
 };
+
+const extraerArticulos = (data) => {
+  // Verificar si existen atributos y categorías
+  if (!data || !data.attributes || !data.attributes.categorias || !data.attributes.categorias.data) {
+    console.error("La estructura de datos no es la esperada.");
+    return [];
+  }
+
+  // Extraer los artículos de las subcategorías
+  let articulos = [];
+  data.attributes.categorias.data.forEach(categoria => {
+    categoria.attributes.sub_categorias.data.forEach(subcategoria => {
+      articulos = articulos.concat(subcategoria.attributes.articulos.data);
+    });
+  });
+
+  return articulos;
+};
+
+
+
+
+
 export const asyncComercio = () => {
   return async function (dispatch) {
     try {

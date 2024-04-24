@@ -41,7 +41,6 @@ const EditProduct = ({ product, id }) => {
     console.log('Datos del formulario:', formData, id);
     dispatch(asyncEditProd(formData))
   };
-console.log(subCategorias,"sub categorias");
   return (
     <form onSubmit={handleSubmit} className='Formix2'>
       <h2>Editar Producto</h2>
