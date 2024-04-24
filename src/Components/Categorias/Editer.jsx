@@ -12,7 +12,6 @@ export const Editer = () => {
   },[])
 
 
-
   // Estado para el valor de búsqueda
   const [searchValue, setSearchValue] = useState("");
 

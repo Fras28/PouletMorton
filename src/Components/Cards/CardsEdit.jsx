@@ -5,7 +5,6 @@ import "./Cards.css";
 import { CardEdite } from "./Card/CardEdit";
 
 export const CardsEdite = ({ products }) => {
-  console.log(products, "que llega a la card");
   return (
     <div className="cartaEdit" >
       <div className="rowsCardEdit">

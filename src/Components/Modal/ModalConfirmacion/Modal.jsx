@@ -26,25 +26,9 @@ export default function ModalGen({ Child, txtBtn }) {
   const { categorias } = useSelector((state) => state.alldata);
   const solo_ids = categorias?.map((cat) => cat.id) || [];
 
-  // const handleProducts = async () => {
-  //   setLoading(true); // Establecer el estado de carga a verdadero al comenzar la carga
-  //   try {
-  //     console.log("ejecutando asyncSUBCATEGORIA");
-  //     for (const idCat of solo_ids) {
-  //       await dispatch(asyncSubCategoria(idCat));
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al obtener SubCategorias full:", error);
-  //   } finally {
-  //     setLoading(false); // Establecer el estado de carga a falso cuando se complete la carga
-  //   }
-  // };
 
   const handleClickOpen = () => {
     setOpen(true);
-    // if (txtBtn === "Editar Producto") {
-    //   handleProducts();
-    // }
   };
 
   const handleClose = () => {
