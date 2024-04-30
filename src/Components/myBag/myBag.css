@@ -3,9 +3,11 @@
 
 }
 .contBag{
-
 margin-top: 10%;
 padding-top: 5%;
+width: 80vh;
+margin: auto;
+margin-top: 0.5rem;
 display: flex;
 border-radius: 20px;
 align-items: center;
