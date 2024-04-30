@@ -4,19 +4,14 @@ import { Link } from "react-router-dom";
 import AlertDialogSlide from "../BtnNavidad/BtnNavidad";
 import "./LandingStart.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  asyncCategorias,
-  asyncComercio,
-} from "../redux/slice";
-import { ButtonEnter } from "./ButtonEnter/ButtonEnter";
-import CtaDNI from "../assets/BaneDNI.png";
 
+const API = process.env.REACT_APP_API_STRAPI;
 export const Inicio = (url) => {
   const dispatch = useDispatch();
   const { comercio } = useSelector((state) => state.alldata);
   const [animateOut, setAnimateOut] = useState(false);
 
-// </svg>
+  // </svg>
 
   const toTop = () => {
     window.scrollTo(0, 0);
@@ -46,29 +41,48 @@ export const Inicio = (url) => {
       }`}
     >
       <div className="landingStart">
-      
-<div style={{width:"100%"}}> <p className="titleSection" style={{justifyContent:"center", outline:"solid white 2px", border:"none"}} >{comercio?.attributes?.msjInicio || 'Consulta por nuestros desayunos y meriendas libres'}</p> </div>
+        <div style={{ width: "100%" }}>
+          {" "}
+          <p
+            className="titleSection"
+            style={{
+              justifyContent: "center",
+              outline: "solid white 2px",
+              border: "none",
+              backgroundColor:`${comercio?.attributes?.rgb}`
+            }}
+          >
+            {comercio?.attributes?.msjInicio ||
+              "Consulta por nuestros desayunos y meriendas libres"}
+          </p>{" "}
+        </div>
         <div className="BottomLanding">
-          <div  className="contAlerStart">
-            <AlertDialogSlide />
-       
-          </div>
-       
+          <img
+            src={`${API}${comercio?.attributes?.logo?.data?.attributes?.url}`}
+            alt=""
+            style={{ maxWidth: "70%", margin: "auto", paddingTop:"2rem" }}
+          />
+          {comercio?.attributes?.presentacion != null ? (
+            <div className="contAlerStart">
+              <AlertDialogSlide />
+            </div>
+          ) : null}
+
           <div className="btnEnter" onClick={handleButtonClick}>
-      
             {/* <ButtonEnter titulo="Ver Catalogo" /> */}
-          <button className="Btn" />
+            <button className="Btn" />
           </div>
           <div className="btnEnter2">
-            
-          <a  className="Btn2" href="https://www.google.com/maps/dir//DIRECCION+cafe+madre/@-38.7186808,-62.3059703,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x95edbd007363273b:0x236c527b644bb0b!2m2!1d-62.264685!2d-38.718755?entry=ttu" target="_blank"/>
+          <a
+              className="Btn2"
+              href={comercio?.attributes?.gps}
+              target="_blank"
+            >📍{comercio?.attributes?.direccion} </a>
           </div>
-   
-
         </div>
         <Link to="/Comander" className="buttonComander">
-              Ir a Comander
-            </Link>
+          Ir a Comander
+        </Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 .titleSection {
   font-size: 20px;
-  color: gold;
+  color: orange;
   font-family: "Montserrat", sans-serif;
   display: flex;
   justify-content: flex-start;
@@ -13,6 +13,7 @@
   gap: 1rem;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
   rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background-image: url(../assets/bgNav.png);
 }
   
 .containerL {
@@ -58,12 +59,17 @@
   top: 100px;
   width: 100%;
   z-index: 9999;
-  
 }
 ::-webkit-scrollbar {
   display: none;
+} 
+.sectioner > p {
+  color: white;
+  padding-left: .5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
-.sectioner > a {
+.sectioner > a{
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   color: white;
@@ -73,8 +79,7 @@
   border-radius: 24px;
   text-decoration: none;
   box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-
-  padding: 12px 24px;
+  padding: 8px 12px;
   background-color: gray;
   margin-top: 0.3rem;
 }
@@ -83,19 +88,13 @@
   border-radius: orange;
 }
 
-/* display: flex;
 
-width: 84px;
-height: 44px;
-
-border: 1px solid #577377;
-border-radius: 24px; */
 
 /* justify-content: flex-start; */
 @media (max-width: 600px) {
   .sectioner {
     justify-content: flex-start;
-    top: 70px;
+    top: 60px;
   }
   .leftInfo {
     padding-left: 0;
@@ -105,6 +104,6 @@ border-radius: 24px; */
     margin: 0;
   }
   .containerL {
-  margin-top: 80px; 
+  margin-top: 60px; 
 }
 }

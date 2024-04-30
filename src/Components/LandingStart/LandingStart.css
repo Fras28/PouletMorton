@@ -16,10 +16,9 @@
   justify-content: space-between;
 }
 
-.contAlerStart{
+.contAlerStart {
   padding-top: 15rem;
 }
-
 
 .marcaLanging {
   /* background-color: rgba(255, 255, 255, 0.541); */
@@ -117,7 +116,8 @@
   height: 40px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(
+  border: solid;
+  border-color: linear-gradient(
     to right,
     #77530a,
     #ffd277,
@@ -126,9 +126,10 @@
     #ffd277,
     #77530a
   );
+  background-color: rgba(0, 0, 0, 0.842);
   background-size: 250%;
   background-position: left;
-  color: #ffd277;
+  color: goldenrod;
   position: relative;
   display: flex;
   align-items: center;
@@ -139,20 +140,6 @@
   margin-top: 2rem;
 }
 
-.Btn2::before {
-  position: absolute;
-  content: "Alsina 23";
-  color: #ffd277;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 97%;
-  height: 90%;
-  border-radius: 8px;
-  transition-duration: 1s;
-  background-color: rgba(0, 0, 0, 0.842);
-  background-size: 200%;
-}
 .Btn {
   width: 180px;
   height: 40px;
@@ -215,12 +202,11 @@
     margin-top: 6rem;
   }
 
-.buttonComander{
-  visibility: hidden;
-  display: none;
-}
+  .buttonComander {
+    visibility: hidden;
+    display: none;
+  }
   .LandingBack {
-    background-image: url("../assets/bgMadre2.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -232,7 +218,7 @@
     padding-bottom: 5rem;
   }
 
-  .contAlerStart{
+  .contAlerStart {
     padding-top: 5rem;
   }
 }

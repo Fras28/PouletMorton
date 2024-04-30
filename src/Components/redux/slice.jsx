@@ -165,7 +165,7 @@ const API_BASE = process.env.REACT_APP_API_COMERCIO
 
 
 
-const comercio = 2;
+const comercio = 3;
 
 
 

@@ -6,28 +6,21 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import Logo from "../assets/Logo.png"
 import "./BtnNavidad.css";
-
+import { useSelector } from "react-redux";
+const API = process.env.REACT_APP_API_STRAPI;
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+
+
+
+
 export default function Horarios() {
+
   const [open, setOpen] = React.useState(false);
-
-  const horarios = {
-    lunes: ['9 a.m.–1 p.m.', '5–9 p.m.'],
-    martes: ['9 a.m.–1 p.m.', '5–9 p.m.'],
-    miércoles: ['9 a.m.–1 p.m.', '5–9 p.m.'],
-    jueves: ['9 a.m.–1 p.m.', '5–9 p.m.'],
-    viernes: ['9 a.m.–1 p.m.', '5–9 p.m.'],
-    sábado: ['9 a.m.–9 p.m.', '5–9 p.m.'],
-    domingo: ['Cerrado'],
-  };
-
-
-
+const { comercio } = useSelector(state => state.alldata)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -53,7 +46,7 @@ export default function Horarios() {
       >
         <DialogTitle className="infoNavi">
           <div>
-         <img src={Logo} alt="logo Coqui Cakes" width="100px" />
+         <img src={`${API}${comercio?.attributes?.logo?.data?.attributes?.url}`} alt="logo Coqui Cakes" width="100px" />
           </div>
           <div style={{marginLeft:"30%"}}>
           <button className="exit" onClick={handleClose}>
@@ -64,19 +57,8 @@ export default function Horarios() {
         <DialogContent style={{display: "flex",
     flexDirection: "column",
     alignItems: "center"}}>
-        <h2>Horarios de la Semana</h2>
-            <ul style={{paddingLeft:"0"}}>
-              {Object.entries(horarios).map(([dia, horas]) => (
-                <li key={dia} style={{display:"flex",justifyContent: "space-between",alignItems: "center", gap:"10px"}}>
-                  <strong>{dia}:</strong>
-               
-                    {horas.map((hora, index) => (
-                      <p key={index} style={{whiteSpace: "nowrap"}}>{hora}</p>
-                    ))}
-                 
-                </li>
-              ))}
-            </ul>
+        <h2>Horarios</h2>
+         <pre>{comercio.attributes.horarios}</pre>
         </DialogContent>
         <DialogActions> </DialogActions>
       </Dialog>

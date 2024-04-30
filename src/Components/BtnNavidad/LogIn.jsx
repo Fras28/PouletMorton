@@ -4,11 +4,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Slide from "@mui/material/Slide";
-import Logo from "../assets/Logo.png";
+
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncLogIn } from '../redux/slice';
 import "./BtnNavidad.css";
-
+const API = process.env.REACT_APP_API_STRAPI;
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -20,7 +20,7 @@ const LogIn = ({ onLoginSuccess }) => {
     password: ""
   });
   const dispatch = useDispatch();
-  const { usuarioComander } = useSelector((state) => state.alldata);
+  const { usuarioComander, comercio } = useSelector((state) => state.alldata);
 
   useEffect(() => {
     if (!usuarioComander) {
@@ -61,7 +61,7 @@ const LogIn = ({ onLoginSuccess }) => {
       >
         <DialogTitle className="infoNavi">
           <div>
-            <img src={Logo} alt="logo Coqui Cakes" width="100px" />
+            <img src={`${API}${comercio?.attributes?.logo?.data?.attributes?.url}`} alt="logo Coqui Cakes" width="100px" />
           </div>
         </DialogTitle>
         <DialogContent>

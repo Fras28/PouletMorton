@@ -1,20 +1,12 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  asyncOrder,
-  asyncProveedor,
-  asyncSubCategoria,
-} from "../../redux/slice";
-import Logo from "../../assets/Logo.png";
 import "./ModalConfirmar.css";
-
+const API = process.env.REACT_APP_API_STRAPI;
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -23,7 +15,7 @@ export default function ModalGen({ Child, txtBtn }) {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false); // Estado para indicar si handleProducts está en proceso
-  const { categorias } = useSelector((state) => state.alldata);
+  const { categorias, comercio } = useSelector((state) => state.alldata);
   const solo_ids = categorias?.map((cat) => cat.id) || [];
 
 
@@ -56,7 +48,7 @@ export default function ModalGen({ Child, txtBtn }) {
       >
         <DialogTitle className="infoNavi">
           <div>
-            <img src={Logo} alt="logo Coqui Cakes" width="100px" />
+            <img src={`${API}${comercio?.attributes?.logo?.data?.attributes?.url}`} alt="logo Coqui Cakes" width="100px" />
           </div>
           <div style={{ marginLeft: "30%" }}>
             <button className="exit" onClick={handleClose}>
