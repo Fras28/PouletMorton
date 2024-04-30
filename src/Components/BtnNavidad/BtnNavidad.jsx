@@ -61,23 +61,7 @@ const { comercio } = useSelector(state =>state.alldata)
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Madre 🤍 Brunch & Cafe. <br /> Espacio pet friendly 🐕🐈 Cafetería
-            tradicional ☕️🥐
-            <br />
-            <br />
-            <div style={{ textAlign: "center" }}>
-              <b
-                style={{
-                  color: "green",
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                DESAYUNO Y MERIENDA LIBRE
-              </b>{" "}
-              <br />
-              - 08:30 a 10:30hs -<br />- 17:00 a 19:00hs -
-            </div>
+         <pre>{comercio?.attributes?.presentacion}</pre>
           </DialogContentText>
         </DialogContent>
         <DialogActions> </DialogActions>
