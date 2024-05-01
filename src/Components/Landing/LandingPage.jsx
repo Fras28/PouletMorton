@@ -17,8 +17,6 @@ export default function LandingPage(url) {
   const id = url.location.pathname.slice(1, 3);
 
 
-
-
   return (
     <div className="animate__animated  animate__zoomIn">
       {!categorias ? <Spinner /> : null}
@@ -77,7 +75,7 @@ export default function LandingPage(url) {
                   }
                   alt="fotito"
                 />
-                <p>{categoria?.attributes?.name}</p>
+                 <p>{categoria?.attributes?.name.replace(/\[.*?\]/g, '')}</p>
               </div>
             </NavLink>
           ))}
