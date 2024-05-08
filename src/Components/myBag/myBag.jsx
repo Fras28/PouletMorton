@@ -80,7 +80,7 @@ export const BagXX = (id) => {
     })
     .join(", ");
 
-  const whatsappLink = `http://wa.me/${comercio[0]?.attributes.whatsapp}?text=Hola ${comercio[0]?.attributes.name} Mensaje de mi pedido ➤ ${whatsappMessage} Total = $ ${total}, "${order?.Payment_type}"`;
+
 
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {

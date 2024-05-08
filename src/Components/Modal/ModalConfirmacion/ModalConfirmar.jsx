@@ -74,7 +74,7 @@ export default function ModalConfirm({ total }) {
     })
     .join(", ");
 
-  const whatsappLink = `http://wa.me/${comercio?.attributes?.whatsapp}?text=Hola ${comercio[0]?.attributes?.name} Mensaje de mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}`;
+  const whatsappLink = `http://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name} Mensaje de mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}`;
 
   const sendComanda = async (e) => {
     e.preventDefault(); // Prevenir la acción por defecto del enlace
@@ -82,13 +82,10 @@ export default function ModalConfirm({ total }) {
     try {
       // Aquí colocas la lógica para enviar la comanda
       const response = await dispatch(asyncOrder(order));
-
       // Actualizar el estado para indicar que la orden se envió correctamente
       setStatusOrder(3);
-
       // Redirigir al usuario a WhatsApp si la comanda se envió correctamente
       window.open(whatsappLink, "_blank");
-
       console.log("Comanda enviada correctamente:", response);
     } catch (error) {
       console.error("Error al enviar la comanda:", error);
