@@ -1,9 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +18,6 @@ export default function ModalConfirm({ total }) {
   const [open, setOpen] = React.useState(false);
   const [statusOrder, setStatusOrder] = React.useState(1);
 
-  
   const groupedProducts = {};
   favProd.forEach((product) => {
     const key = `${product?.attributes?.name} - ${product?.attributes?.price}`;
@@ -44,7 +41,12 @@ export default function ModalConfirm({ total }) {
     telefono: "291",
     domicilio: "",
   });
-
+  const whatsappMessage = Object.entries(groupedProducts)
+  .map(([productInfo, count]) => {
+    const [name, price] = productInfo.split(" - ");
+    return `${name} ($${price}) x${count},`;
+  })
+  .join(", ");
   const handleTelefonoChange = (e) => {
     setOrder({
       ...order,
@@ -67,15 +69,6 @@ export default function ModalConfirm({ total }) {
     });
   };
 
-  const whatsappMessage = Object.entries(groupedProducts)
-    .map(([productInfo, count]) => {
-      const [name, price] = productInfo.split(" - ");
-      return `${name} ($${price}) x${count},`;
-    })
-    .join(", ");
-
-  const whatsappLink = `http://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name} Mensaje de mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}`;
-
   const sendComanda = async (e) => {
     e.preventDefault(); // Prevenir la acción por defecto del enlace
 
@@ -84,8 +77,25 @@ export default function ModalConfirm({ total }) {
       const response = await dispatch(asyncOrder(order));
       // Actualizar el estado para indicar que la orden se envió correctamente
       setStatusOrder(3);
-      // Redirigir al usuario a WhatsApp si la comanda se envió correctamente
-      window.open(whatsappLink, "_blank");
+
+      // Verificar si el usuario está en un dispositivo móvil
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+      // Redireccionar usando diferentes métodos según el tipo de dispositivo y navegador
+      if (isMobile) {
+          if (navigator.userAgent.match(/(iPhone|iPod|iPad)/i)) {
+              // Si el usuario está en un dispositivo iOS (iPhone, iPod, iPad), usar el enlace wa.me
+              window.open(`https://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name} Mensaje de mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}`, "_blank");
+          } else {
+              // Para otros dispositivos móviles, usar el enlace con el protocolo intent
+              window.location.href = `intent://send/+542914464308/#Intent;scheme=whatsapp;package=com.whatsapp;action=android.intent.action.SENDTO;end`;
+          }
+      } else {
+          // Si el usuario está en una computadora de escritorio u otro dispositivo, proporcionar una alternativa
+          // como un mensaje o instrucciones para copiar y pegar el mensaje en WhatsApp manualmente.
+          alert("Por favor, copia el siguiente mensaje y pégalo en WhatsApp: " + whatsappMessage);
+      }
+
       console.log("Comanda enviada correctamente:", response);
     } catch (error) {
       console.error("Error al enviar la comanda:", error);
@@ -295,7 +305,6 @@ export default function ModalConfirm({ total }) {
             </form>
           </div>
         </DialogContent>
-        <DialogActions> </DialogActions>
       </Dialog>
     </div>
   );
