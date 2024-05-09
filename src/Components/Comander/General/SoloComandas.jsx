@@ -156,7 +156,7 @@ const logo = <svg width="300" viewBox="0 0 699 457" fill="none" xmlns="http://ww
                     </>
                   ) : (
                     <label className="comanda-label" htmlFor="phone">
-                      Take Way
+                      Retiro en Local
                     </label>
                   )}
                 </div>
@@ -227,7 +227,7 @@ const logo = <svg width="300" viewBox="0 0 699 457" fill="none" xmlns="http://ww
                     </>
                   ) : (
                     <label className="comanda-label" htmlFor="phone">
-                      Take Way
+                      Retiro en Local
                     </label>
                   )}
                 </div>

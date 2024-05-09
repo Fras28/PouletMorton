@@ -79,7 +79,7 @@ export default function ModalConfirm({ total }) {
       setStatusOrder(3);
 
       // Redireccionar automáticamente a WhatsApp
-      window.location.href = `https://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name}, mi nombre es ${order.name}, este es mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}`;
+      window.location.href = `https://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name}, mi nombre es ${order.name}, este es mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}, Formato de pedido : ${order.tipo_pedido} ${order.domicilio.length >3 ? order.domicilio :null}`;
 
       console.log("Comanda enviada correctamente:", response);
     } catch (error) {
@@ -182,10 +182,10 @@ export default function ModalConfirm({ total }) {
                   value={order?.tipo_pedido}
                 >
                   <option hidden disabled defaultValue value={""}>
-                    Delivery o Take Away?
+                    Delivery o Retiro en Local?
                   </option>
                   <option>Delivery</option>
-                  <option>Take Away</option>
+                  <option>Retiro en Local</option>
                 </select>
                 <div
                   style={{
@@ -253,7 +253,7 @@ export default function ModalConfirm({ total }) {
                 {!(
                   /^\d{10}$/.test(order?.telefono) &&
                   order?.name?.length > 3 &&
-                  (order?.tipo_pedido === "Take Away" ||
+                  (order?.tipo_pedido === "Retiro en Local" ||
                     (order?.tipo_pedido === "Delivery" &&
                       order.domicilio.length > 7)) &&
                   order?.metodo_de_pago &&
@@ -266,7 +266,7 @@ export default function ModalConfirm({ total }) {
                       </li>
                     )}
                     {!(
-                      order?.tipo_pedido === "Take Away" ||
+                      order?.tipo_pedido === "Retiro en Local" ||
                       (order?.tipo_pedido === "Delivery" &&
                         order?.domicilio?.length > 7)
                     ) && (
