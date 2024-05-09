@@ -79,7 +79,7 @@ export default function ModalConfirm({ total }) {
       setStatusOrder(3);
 
       // Redireccionar automáticamente a WhatsApp
-      window.location.href = `https://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name}, mi nombre es ${order.name}, este es mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}, Formato de pedido : ${order.tipo_pedido} ${order.domicilio.length >3 ? order.domicilio :null}`;
+      window.location.href = `https://wa.me/+542914464308?text=Hola ${comercio?.attributes?.name}, mi nombre es ${order.name}, este es mi pedido ➤ ${whatsappMessage} Total = $ ${total}, ${order?.metodo_de_pago}, Formato de pedido : ${order.tipo_pedido} ${order.domicilio.length >3 ? "a : " + order.domicilio :null}`;
 
       console.log("Comanda enviada correctamente:", response);
     } catch (error) {
