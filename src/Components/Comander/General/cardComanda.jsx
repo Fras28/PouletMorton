@@ -56,7 +56,7 @@ const CardComanda = (comanda) => {
                 </>
               ) : (
                 <label className="comanda-label" htmlFor="phone">
-                  Retiro en Local
+                  Take Way
                 </label>
               )}
             </div>
